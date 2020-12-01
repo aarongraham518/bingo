@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
+//used for our database
 import 'firebase/firestore';
+//used for authentication
 import 'firebase/auth';
 
 const config = {
@@ -40,11 +42,16 @@ const config = {
 
   firebase.initializeApp(config);
 
+  //All related to authentication
   export const auth = firebase.auth();
+
+  //our database
   export const firestore = firebase.firestore();
 
+  //Trigger the google popup for authentication and select an account
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({prompt: 'select_account'});
+  //note, we'll use 'signInWithGoogle' in our signin component
   export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
   export default firebase;

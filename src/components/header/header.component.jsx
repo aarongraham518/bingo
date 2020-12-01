@@ -20,6 +20,7 @@ const Header = ({currentUser}) => (
                 CONTACT
             </Link> 
             {
+                //note! auth.signOut() will sign a user out
                 currentUser ? (
                 <div className='option' onClick={() => auth.signOut()}>SIGN OUT</div>
                 ):(
