@@ -14,17 +14,33 @@ const config = {
     appId: "1:860827044998:web:cbd44e705f33d2958cd507"
   };
 
+  /**
+   * Creating user profile
+   * passing in userAuth which comes from auth
+   * 
+   */
   export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!userAuth) return;
 
+    //Query firestore to see if user (uid) exists
     const userRef = firestore.doc(`users/${userAuth.uid}`);
 
+    //Pull out a snapShot of userRef place in the database
+    //getting back the userRef at the location above
+    //note, 'snapShot' only represents the data
     const snapShot = await userRef.get();
 
+    //exists property, lets us know if there is any data there.
     if(!snapShot.exists){
+      /**Grab user details that we want to work with
+       * by destructoring them from userAuth object
+       */
       const {displayName, email} = userAuth;
       const createdAt = new Date();
 
+      /**
+       * async request to set this data in our database
+       */
       try{
         await userRef.set({
           displayName,

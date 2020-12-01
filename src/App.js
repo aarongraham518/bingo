@@ -26,6 +26,13 @@ class App extends React.Component {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
 
+        /**
+         * onSnapshot is sim to onAuthStateChanged.
+         * we get back snapShot as an object which is data
+         * related to the userAuth that we possibly stored
+         * if it was a new authentication, or the data related 
+         * to the user that is already stored in our database
+         */
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
               id: snapShot.id,
