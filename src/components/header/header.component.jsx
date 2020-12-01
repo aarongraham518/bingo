@@ -7,6 +7,7 @@ import {ReactComponent as Logo} from '../../assests/crown.svg';
 
 import './header.styles.scss';
 
+//note, currentUser intially is null and passed from reducer
 const Header = ({currentUser}) => (
     <div className="header">
         <Link className="logo-container" to="/">
@@ -32,6 +33,13 @@ const Header = ({currentUser}) => (
     </div>
 );
 
+/**
+ * state is the rootReducer 
+ * state.user.currentUser == rootReducers, user value, userReducer
+ * which is the currentUser value
+ * Note! currentUser is the prop/state value that
+ * we want to pass into this component
+ */
 const mapStatetoProps = (state) => ({
     currentUser: state.user.currentUser
 });

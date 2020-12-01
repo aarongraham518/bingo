@@ -74,10 +74,23 @@ class App extends React.Component {
   }
 }
 
+//destructor off our user reducer
 const mapStateToProps = ({ user }) => ({
   currentUser: user.currentUser
 });
 
+/**
+ *  returns an object where the prop name is
+ *  whatever prop we want to pass in that
+ *  dispatches the new action we want to pass
+ *  which is the setCurrentUser
+ * 
+ *  get the user object and dispatch which is 
+ *  a way for redux to return an action object.
+ *  Call our Action setCurrentUser and pass our user
+ *  in. So we're invoking setCurrentUser with user that 
+ *  will be used as the payload
+ */
 const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
